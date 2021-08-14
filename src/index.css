@@ -1,13 +1,39 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+    body {
+        @apply bg-white font-poppins;
+    }
+    .App {
+        @apply flex flex-col justify-center text-center m-auto;
+    }
+    .page-section {
+        @apply py-6;
+    }
+    .form-group {
+        @apply text-left flex flex-col px-4;
+    }
+    input {
+        @apply border border-gray-300 rounded-md p-2;
+    }
+    .invalid-feedback {
+        @apply text-red-light text-left;
+    }
+    .form-check {
+        @apply flex flex-col px-4;
+    }
+    .checkBoxText {
+        @apply flex flex-row text-left space-x-2 items-center;
+    }
+    .form-buttons {
+        @apply flex flex-row items-center justify-center space-x-10 pt-10;
+    }
+    .btn {
+        @apply border-2 border-red rounded-md px-6 py-2 w-32 text-red font-bold hover:bg-red hover:text-white;
+    }
+    .inputLabel {
+        @apply text-black;
+    }
 }
