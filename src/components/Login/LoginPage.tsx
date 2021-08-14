@@ -49,48 +49,54 @@ export const LoginPage: React.FC<LoginPageProps> = (props: any) => {
             })
     }
 
+    const currentUser = exportAuthService.getCurrentUser()
+
     return (
         <div className="align-middle sm:mx-auto sm:w-full sm:max-w-md py-16">
             <div className="register-form bg-white-light py-8 px-6 shadow-lg rounded-lg">
-                <h1 className="text-4xl pt-2 pb-10 text-red">Please Login!</h1>
-                <form
-                    className="rounded align-middle space-y-4 bg-white-light"
-                    onSubmit={handleSubmit(onSubmit)}
-                >
-                    <div className="form-group">
-                        <label className="inputLabel">Email</label>
-                        <input
-                            type="text"
-                            {...register('email')}
-                            className={`form-control ${
-                                errors.email ? 'is-invalid' : ''
-                            }`}
-                        />
-                        <div className="invalid-feedback">
-                            {errors.email?.message}
+                {!currentUser? (
+                <>
+                    <h1 className="text-4xl pt-2 pb-10 text-red">Please Login!</h1>
+                    <form
+                        className="rounded align-middle space-y-4 bg-white-light"
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
+                        <div className="form-group">
+                            <label className="inputLabel">Email</label>
+                            <input
+                                type="text"
+                                {...register('email')}
+                                className={`form-control ${
+                                    errors.email ? 'is-invalid' : ''
+                                }`}
+                            />
+                            <div className="invalid-feedback">
+                                {errors.email?.message}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="form-group">
-                        <label className="inputLabel">Password</label>
-                        <input
-                            type="password"
-                            {...register('password')}
-                            className={`form-control ${
-                                errors.password ? 'is-invalid' : ''
-                            }`}
-                        />
-                        <div className="invalid-feedback">
-                            {errors.password?.message}
+                        <div className="form-group">
+                            <label className="inputLabel">Password</label>
+                            <input
+                                type="password"
+                                {...register('password')}
+                                className={`form-control ${
+                                    errors.password ? 'is-invalid' : ''
+                                }`}
+                            />
+                            <div className="invalid-feedback">
+                                {errors.password?.message}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="form-buttons">
-                        <button type="submit" className="btn btn-primary">
-                            Login
-                        </button>
-                    </div>
-                </form>
+                        <div className="form-buttons">
+                            <button type="submit" className="btn btn-primary">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </>
+                ):(<h1>You already logged in!</h1>)}
             </div>
         </div>
     )

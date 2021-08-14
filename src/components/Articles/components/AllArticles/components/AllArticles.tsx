@@ -59,7 +59,7 @@ export const AllArticles: React.FC<AllArticlesProps> = ({ articles }) => {
                                     <Card
                                         elevation={5}
                                         className={classes.card}
-                                        onClick={() => console.log('asd')}
+                                        onClick={() => console.log(article.slug)}
                                     >
                                         <CardActionArea>
                                             <CardContent>

@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import { LoginPage } from './components/Login/LoginPage';
 import { Profile } from './components/Profile/Profile';
 import { ArticlesPage } from './components/Articles/ArticlesPage';
+import { CreateArticlePage } from './components/Articles/components/CreateArticle/CreateArticlePage';
 
 interface AppProps {
 }
@@ -24,6 +25,7 @@ const App: React.FC<AppProps> = () => {
                       <Route exact path="/login" component={LoginPage} />
                       <Route exact path="/articles" component={ArticlesPage} />
                       <Route exact path="/profile" component={Profile} />
+                      <Route exact path="/createArticle" component={CreateArticlePage} />
                     {/*<Route path="*" component={NoMatch} /> */}
                   </Switch>
               </div>

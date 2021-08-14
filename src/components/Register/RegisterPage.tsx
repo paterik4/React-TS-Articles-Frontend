@@ -66,9 +66,13 @@ export const RegisterPage: React.FC<RegisterPageProps> = (props: any) => {
             })
     }
 
+    const currentUser = exportAuthService.getCurrentUser()
+
     return (
         <div className="align-middle sm:mx-auto sm:w-full sm:max-w-md py-16">
             <div className="register-form bg-white-light py-8 px-6 shadow-lg rounded-lg">
+            {!currentUser? (
+                <>
                 <h1 className="text-4xl pt-2 pb-10 text-red">
                     Please Register!
                 </h1>
@@ -180,6 +184,8 @@ export const RegisterPage: React.FC<RegisterPageProps> = (props: any) => {
                         </Tooltip>
                     </div>
                 </form>
+            </>
+            ) : (<h1>You already have account!</h1>)}
             </div>
         </div>
     )
