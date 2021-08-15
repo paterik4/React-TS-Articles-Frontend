@@ -25,6 +25,8 @@ export const Articles: React.FC<ArticlesProps> = (searchText) => {
         isPending
     } = exportApiFetchs.FetchData(API_URL + 'articles')
 
+    /* console.log(articles.map) */
+
     const {
         data2: articlesBySlug,
         error2,
@@ -37,6 +39,6 @@ export const Articles: React.FC<ArticlesProps> = (searchText) => {
         <div className={classes.articlesContainer}>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
-            {articles && searchText? <AllArticles articles={articles}/> : <ArticlesBySlug articles={articlesBySlug} />}
+            {articles && searchText? <AllArticles articles={articles} /> : <ArticlesBySlug articles={articlesBySlug} />}
         </div>);
 }

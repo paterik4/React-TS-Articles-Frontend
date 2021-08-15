@@ -13,6 +13,9 @@ module.exports = {
             fontSize: {
                 'xxxs': '0.25rem',
                 'xxs': '0.6rem'
+            },
+            minHeight: {
+                '32': '8rem'
             }
         },
         colors: {

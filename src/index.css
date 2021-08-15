@@ -18,11 +18,17 @@
     input {
         @apply border border-gray-300 rounded-md p-2;
     }
+    textarea {
+        @apply border border-gray-300 rounded-md p-2;
+    }
     .invalid-feedback {
         @apply text-red-light text-left;
     }
     .form-check {
         @apply flex flex-col px-4;
+    }
+    .form-check2 {
+        @apply flex flex-row px-2 space-x-4 pb-4;
     }
     .checkBoxText {
         @apply flex flex-row text-left space-x-2 items-center;

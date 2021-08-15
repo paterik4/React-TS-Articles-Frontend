@@ -85,7 +85,7 @@ export const AllArticles: React.FC<AllArticlesProps> = ({ articles }) => {
                                                     component="p"
                                                 >
                                                     {article.author
-                                                        ? article.author
+                                                        ? article.author.username
                                                         : 'No author exists'}
                                                 </Typography>
                                             </CardContent>

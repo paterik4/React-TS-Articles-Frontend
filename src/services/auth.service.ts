@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { API_URL } from '../enviroment'
+import authHeader from './auth-header'
 
 const register = (username: string, email: string, password: string) => {
     return axios.post(API_URL + 'users', {
@@ -38,6 +39,24 @@ const getUserInfo = (email: string) => {
     })
 }
 
+const createArticle = (
+    title: string,
+    description: string,
+    body: string,
+    tagList: string[]
+) => {
+    return axios.post(
+        API_URL + 'articles',
+        {
+            title,
+            description,
+            body,
+            tagList
+        },
+        { headers: authHeader() }
+    )
+}
+
 const logout = () => {
     localStorage.removeItem('user')
 }
@@ -53,7 +72,8 @@ const exportAuthService = {
     login,
     logout,
     getCurrentUser,
-    deleteUser
+    deleteUser,
+    createArticle
 }
 
 export default exportAuthService
