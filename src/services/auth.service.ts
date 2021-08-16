@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 import { API_URL } from '../enviroment'
 import authHeader from './auth-header'
 
@@ -57,8 +58,26 @@ const createArticle = (
     )
 }
 
+const favoriteArticle = (slug: any) => {
+    return axios.post(
+        API_URL + 'articles/' + slug + '/favorite',
+        { slug },
+        {
+            headers: authHeader()
+        }
+    )
+}
+
+const unFavoriteArticle = (slug: any) => {
+    return axios.delete(API_URL + 'articles/' + slug + '/favorite', {
+        headers: authHeader()
+    })
+}
+
 const logout = () => {
     localStorage.removeItem('user')
+    localStorage.setItem('tagIndex', '0')
+    localStorage.setItem('tagName', 'All')
 }
 
 const getCurrentUser = () => {
@@ -73,7 +92,9 @@ const exportAuthService = {
     logout,
     getCurrentUser,
     deleteUser,
-    createArticle
+    createArticle,
+    favoriteArticle,
+    unFavoriteArticle
 }
 
 export default exportAuthService

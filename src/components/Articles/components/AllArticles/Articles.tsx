@@ -25,13 +25,15 @@ export const Articles: React.FC<ArticlesProps> = (searchText) => {
         isPending
     } = exportApiFetchs.FetchData(API_URL + 'articles')
 
-    /* console.log(articles.map) */
+    /* console.log(articles) */
 
     const {
         data2: articlesBySlug,
         error2,
         isPending2
-    } = exportApiFetchs.FetchArticlesBySlugData(API_URL + 'articles' + searchText)
+    } = exportApiFetchs.FetchArticlesBySlugData(API_URL + 'articles/' + searchText)
+
+    const selectedTag = localStorage.getItem('tagName')!
 
     /* console.log(articles) */
 
@@ -39,6 +41,6 @@ export const Articles: React.FC<ArticlesProps> = (searchText) => {
         <div className={classes.articlesContainer}>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
-            {articles && searchText? <AllArticles articles={articles} /> : <ArticlesBySlug articles={articlesBySlug} />}
+            {articles && searchText? <AllArticles selectedTag={selectedTag} articles={articles} /> : <ArticlesBySlug articles={articlesBySlug} />}
         </div>);
 }

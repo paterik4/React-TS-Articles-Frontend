@@ -42,7 +42,7 @@ export const LoginPage: React.FC<LoginPageProps> = (props: any) => {
             .then((response) => {
                 history.push('/articles')
                 toast.success('Login successful')
-                setTimeout(() => window.location.reload(false), 1000)
+                setTimeout(() => window.location.reload(false), 500)
             })
             .catch((err) => {
                 toast.error('Something went wrong')

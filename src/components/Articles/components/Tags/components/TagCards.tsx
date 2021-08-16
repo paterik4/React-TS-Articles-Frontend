@@ -111,6 +111,7 @@ export const TagCards: React.FC<TagCardsProps> = ({ tags }) => {
         setActive(newIndex)
         localStorage.setItem('tagIndex', newIndex)
         localStorage.setItem('tagName', newValue)
+        window.location.reload()
     }
 
     return (

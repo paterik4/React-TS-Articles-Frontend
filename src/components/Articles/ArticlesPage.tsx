@@ -42,15 +42,15 @@ export const ArticlesPage: React.FC<ArticlesPageProps> = ({}) => {
     })
 
     const handleChange = (event: any) => {
-        setInput(event.target.value)
+/*         setInput(event.target.value)
         event.target.value? 
         localStorage.setItem('searchText', event.target.value) :
-        localStorage.removeItem('searchText')
+        localStorage.removeItem('searchText') */
     }
 
         return (
             <div className={classes.ArticlesPageContainer}>
-            <div className="flex flex-row justify-between pr-8">
+            <div className="flex flex-row justify-between pr-40 items-center">
                 <h1 className="text-left font-poppins text-4xl">Articles</h1>
                 <Link to="/createArticle">
                     <div className="text-red border border-red rounded-lg p-2 align-middle hover:bg-red hover:text-white"> Add new</div>
