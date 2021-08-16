@@ -86,6 +86,20 @@ const getCurrentUser = () => {
 
 const deleteUser = (email: string) => {}
 
+const createTag = (tag: string) => {
+    return axios.post(API_URL + 'tags/addNew', { tag })
+}
+
+const createComment = (slug: any, comment: string) => {
+    return axios.post(
+        API_URL + 'articles/' + slug + '/comments',
+        { comment },
+        {
+            headers: authHeader()
+        }
+    )
+}
+
 const exportAuthService = {
     register,
     login,
@@ -94,7 +108,9 @@ const exportAuthService = {
     deleteUser,
     createArticle,
     favoriteArticle,
-    unFavoriteArticle
+    unFavoriteArticle,
+    createTag,
+    createComment
 }
 
 export default exportAuthService

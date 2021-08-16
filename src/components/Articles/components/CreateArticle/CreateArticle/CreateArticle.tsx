@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core'
+import { Grid, Tooltip, Typography } from '@material-ui/core'
 import React from 'react'
 import exportAuthService from '../../../../../services/auth.service'
 import { useForm } from 'react-hook-form'
@@ -10,6 +10,8 @@ import { useHistory } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import exportApiFetchs from '../../../../../Api/API'
 import { API_URL } from '../../../../../enviroment'
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import { withStyles } from '@material-ui/styles'
 
 interface CreateArticleProps {}
 
@@ -29,7 +31,8 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
             .required('Article body is required')
             .min(40, 'Article body must be at least 40 characters')
             .max(250, 'Article body must not exceed 250 characters'),
-        tagList: Yup.array().min(1, 'Select atleast one tag')
+        tagList: Yup.array(),
+        newTags: Yup.string()
     })
 
     const {
@@ -38,11 +41,20 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
         isPending2
     } = exportApiFetchs.FetchTagsData(API_URL + 'tags')
 
+    const user = exportAuthService.getCurrentUser()
+
+
     const onSubmit = (data: any) => {
-        const user = exportAuthService.getCurrentUser()
-        const userId = user.user.id
+        const addNewTags = (newTags: string) => {
+            const newTagsArr = newTags.split(',')
+            newTagsArr.map((tag: any) => 
+                exportAuthService.createTag(tag)
+            )
+        }
+        addNewTags(data.newTags)
         const tagList = data.tagList
         tagList.push('All')
+        tagList.push(data.newTags)
         exportAuthService
             .createArticle(
                 data.title,
@@ -70,7 +82,15 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
         />
     )
 
-    const currentUser = exportAuthService.getCurrentUser()
+    const HtmlTooltip = withStyles((theme: any) => ({
+        tooltip: {
+            backgroundColor: '#363537',
+            color: '#F7F7F7',
+            maxWidth: 350,
+            fontSize: '1rem',
+            border: '1px solid #F7F7F7',
+        },
+    }))(Tooltip);
 
     return (
         <div className="pt-20">
@@ -82,7 +102,8 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
                     description: '',
                     body: '',
                     toggle: false,
-                    tagList: []
+                    tagList: [],
+                    newTags: '',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
@@ -111,7 +132,7 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
                                 ) : null}
                             </div>
                             <div className="form-check">
-                                <p className="text-left pb-2">Tags*</p>
+                                <p className="text-left pb-2">Tags (Optional)</p>
                                 <div
                                     role="group"
                                     aria-labelledby="checkbox-group"
@@ -140,11 +161,31 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
                                         <div>Loading...</div>
                                     )}
                                 </div>
-                                {errors.tagList && touched.tagList ? (
-                                    <div className="invalid-feedback">
-                                        {errors.tagList}
-                                    </div>
-                                ) : null}
+                            </div>
+                            <div className="form-group">
+                                <label className="inputLabel">
+                                    Add new tag (Optional)
+                                    <HtmlTooltip 
+                                    title={
+                                        <React.Fragment>
+                                            <Typography className="font-bold">
+                                                You can add one tag by typing:
+                                            </Typography>
+                                            <Typography className="text=">
+                                                e.g: TagName
+                                            </Typography>
+                                            <Typography className="font-bold">
+                                                or you can add 2 or more tags by typing:
+                                            </Typography>
+                                            <Typography className="text=">
+                                                e.g: TagName,TagName2,TagName3
+                                            </Typography>
+                                        </React.Fragment>
+                                    }>
+                                        <InfoOutlinedIcon />
+                                    </HtmlTooltip>
+                                </label>
+                                <Field name="newTags" />
                             </div>
                             <div className="form-group row-span-3">
                                 <label className="inputLabel">

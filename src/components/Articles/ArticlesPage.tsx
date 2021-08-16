@@ -53,7 +53,7 @@ export const ArticlesPage: React.FC<ArticlesPageProps> = ({}) => {
             <div className="flex flex-row justify-between pr-40 items-center">
                 <h1 className="text-left font-poppins text-4xl">Articles</h1>
                 <Link to="/createArticle">
-                    <div className="text-red border border-red rounded-lg p-2 align-middle hover:bg-red hover:text-white"> Add new</div>
+                    <div className="text-red border border-red rounded-lg p-2 w-auto align-middle hover:bg-red hover:text-white"> Add new article</div>
                 </Link>
             </div>
             <p className="text-left font-poppins text-black-light text-md py-2">You can search articles by title, by slug and with clicking one of the tags cards.</p>

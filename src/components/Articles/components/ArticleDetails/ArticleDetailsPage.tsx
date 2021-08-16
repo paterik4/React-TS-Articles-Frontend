@@ -18,7 +18,7 @@ export const ArticleDetailsPage: React.FC<ArticleDetailsPageProps> = ({}) => {
                 isPending
         } = exportApiFetchs.FetchArticleData(API_URL + 'articles/' + slug )
 
-        console.log(slug)
+        /* console.log(slug) */
         console.log(article)
 
         return (
