@@ -42,6 +42,18 @@ export const ArticleDetails: React.FC<ArticleDetailsProps> = ({ article }) => {
             .catch((e) => toast.error(e.message))
     }
 
+    const deleteArticle = () => {
+        exportAuthService.deleteArticle(slug).then(response => {
+            if(response.status === 200)
+            {
+                toast.success("Article successfully deleted")
+            }
+        }).then(() => {
+            history.push("/articles")
+        }).catch(e => toast.error(e.message))
+        
+    }
+
     const handleSubmit = (data: any) => {
         exportAuthService
             .createComment(slug, data.comment)
@@ -66,6 +78,8 @@ export const ArticleDetails: React.FC<ArticleDetailsProps> = ({ article }) => {
             .max(200, 'Comment must not exceed 200 characters')
     })
 
+    const user = exportAuthService.getCurrentUser()
+
     return (
         <div className="py-10 px-40 max-w-screen-2xl">
             {article ? (
@@ -74,10 +88,19 @@ export const ArticleDetails: React.FC<ArticleDetailsProps> = ({ article }) => {
                     <div className="flex items-center justify-between align-middle">
                         <p className="text-3xl">{article.title}</p>
                         <div className="flex items-center justify-end">
-                            <Link to="/editArticle">
-                            <p className="cursor-pointer px-2 mx-8 rounded-lg border border-red text-red hover:text-white hover:bg-red"
-                            >Edit article</p>
-                            </Link>
+                            {user.user.username === articleAuthor && 
+                            <React.Fragment>
+                                <Link to={"/articles/"+slug+"/editArticle"}>
+                                    <p className="cursor-pointer px-2 mr-4 rounded-lg border border-red text-red hover:text-white hover:bg-red"
+                                    >Edit article</p>
+                                </Link>
+                                    <p 
+                                    className="cursor-pointer px-2 mr-4 rounded-lg border border-red text-red hover:text-white hover:bg-red"
+                                    onClick={deleteArticle}
+                                    >
+                                        Delete article
+                                    </p>
+                            </React.Fragment>}
                             <p className="text-right">
                                 {article.favoriteCount} users favorited
                             </p>

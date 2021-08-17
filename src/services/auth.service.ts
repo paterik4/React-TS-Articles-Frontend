@@ -58,6 +58,31 @@ const createArticle = (
     )
 }
 
+const editArticle = (
+    slug: any,
+    title: string,
+    description: string,
+    body: string,
+    tagList: string[]
+) => {
+    return axios.put(
+        API_URL + 'articles/' + slug,
+        {
+            title,
+            description,
+            body,
+            tagList
+        },
+        { headers: authHeader() }
+    )
+}
+
+const deleteArticle = (
+    slug: any,
+) => {
+    return axios.delete(API_URL + 'articles/' + slug, { headers: authHeader() })
+}
+
 const favoriteArticle = (slug: any) => {
     return axios.post(
         API_URL + 'articles/' + slug + '/favorite',
@@ -110,7 +135,9 @@ const exportAuthService = {
     favoriteArticle,
     unFavoriteArticle,
     createTag,
-    createComment
+    createComment,
+    editArticle,
+    deleteArticle
 }
 
 export default exportAuthService
