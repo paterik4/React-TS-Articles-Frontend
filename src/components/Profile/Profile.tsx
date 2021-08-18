@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import exportApiFetchs from '../../Api/API'
 import { API_URL } from '../../enviroment'
 import exportAuthService from '../../services/auth.service'
@@ -22,9 +23,15 @@ export const Profile: React.FC<ProfileProps> = ({}) => {
     const classes = useStyles()
     const currentUser = exportAuthService.getCurrentUser()
 
+    const {
+        data2: users,
+        isPending2,
+        error2
+    } = exportApiFetchs.FetchUsers(API_URL+"users")
+
         return (
         <div className={classes.profileContainer}>
-            <ProfileCard user={currentUser.user}/>
+            <ProfileCard users={users} />
         </div>
         );
 }

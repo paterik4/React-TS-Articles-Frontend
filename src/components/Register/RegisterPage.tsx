@@ -10,7 +10,6 @@ import { Tooltip } from '@material-ui/core'
 interface RegisterPageProps {}
 
 type UserSubmitForm = {
-    fullname: string
     username: string
     email: string
     password: string
@@ -20,10 +19,9 @@ type UserSubmitForm = {
 
 export const RegisterPage: React.FC<RegisterPageProps> = (props: any) => {
     const validationSchema = Yup.object().shape({
-        fullname: Yup.string().required('Fullname is required'),
         username: Yup.string()
             .required('Username is required')
-            .min(6, 'Username must be at least 6 characters')
+            .min(5, 'Username must be at least 5 characters')
             .max(20, 'Username must not exceed 20 characters'),
         email: Yup.string()
             .required('Email is required')
@@ -80,19 +78,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = (props: any) => {
                     className="rounded align-middle space-y-4 bg-white-light"
                     onSubmit={handleSubmit(onSubmit)}
                 >
-                    <div className="form-group">
-                        <label className="inputLabel">Full Name</label>
-                        <input
-                            type="text"
-                            {...register('fullname')}
-                            className={`form-control ${
-                                errors.fullname ? 'is-invalid' : ''
-                            }`}
-                        />
-                        <div className="invalid-feedback">
-                            {errors.fullname?.message}
-                        </div>
-                    </div>
                     <div className="form-group">
                         <label className="inputLabel">Username</label>
                         <input

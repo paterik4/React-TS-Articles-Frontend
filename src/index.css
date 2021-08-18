@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply bg-white font-poppins;
+        @apply bg-white font-poppins overflow-x-hidden;
     }
     .App {
         @apply flex flex-col justify-center text-center m-auto;

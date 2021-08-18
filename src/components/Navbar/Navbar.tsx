@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                                 <Link to="/admin">Admin Page</Link>
                             } 
                             <Link to="/articles">Articles</Link>
-                            <Link to="/profile">{'Profile'}</Link>
+                            <Link to={"/profile/"+currentUser.user.username}>{'Profile'}</Link>
                             <Link to="/login" onClick={logOut}>
                                 Log out
                             </Link>

@@ -13,6 +13,7 @@ import NoMatch from './components/NoMatch';
 import { ArticleDetailsPage } from './components/Articles/components/ArticleDetails/ArticleDetailsPage';
 import { AdminPage } from './components/AdminPage/AdminPage';
 import { EditArticlePage } from './components/Articles/components/EditArticle/EditArticlePage';
+import { EditProfilePage } from './components/Profile/components/EditProfile/EditProfilePage';
 
 interface AppProps {
 }
@@ -30,7 +31,8 @@ const App: React.FC<AppProps> = () => {
                             <Route exact path="/articles" component={ArticlesPage} />
                             <Route exact path="/articles/:slug" component={ArticleDetailsPage} />
                             <Route exact path="/articles/:slug/editArticle" component={EditArticlePage} />
-                            <Route exact path="/profile" component={Profile} />
+                            <Route exact path="/profile/:username" component={Profile} />
+                            <Route exact path="/profile/:username/editprofile" component={EditProfilePage} />
                             <Route exact path="/createArticle" component={CreateArticlePage} />
                             <Route exact path="/admin" component={AdminPage} />
                             <Route path="*" component={NoMatch} />

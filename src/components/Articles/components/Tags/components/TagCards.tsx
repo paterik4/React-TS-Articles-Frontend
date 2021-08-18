@@ -120,7 +120,7 @@ export const TagCards: React.FC<TagCardsProps> = ({ tags }) => {
             <Grid container className={classes.container}>
                 {tags ? (
                     tags.map((item: any, i: number) => (
-                        <Grid key={item.id} className="pr-4" item>
+                        <Grid key={item.id} className="pr-4 pb-4" item>
                             <p
                                 onClick={() => handleChange(item.tag, i)}
                                 className="cursor-pointer"

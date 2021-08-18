@@ -66,7 +66,7 @@ export const EditArticle: React.FC<EditArticleProps> = ({ article }) => {
             )
             .then((response) => {
                 toast.success('Article updated successfully')
-                setTimeout(() => history.push('/articles/'+slug), 1000)
+                setTimeout(() => history.goBack(), 1000)
             })
             .catch((err) => {
                 toast.error('Something went wrong')

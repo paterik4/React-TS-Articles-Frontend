@@ -54,7 +54,7 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
         addNewTags(data.newTags)
         const tagList = data.tagList
         tagList.push('All')
-        tagList.push(data.newTags)
+        data.newTags.length > 0 && tagList.push(data.newTags)
         exportAuthService
             .createArticle(
                 data.title,

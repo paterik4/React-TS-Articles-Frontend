@@ -1,19 +1,25 @@
 import { CardContent, CardHeader, Card, makeStyles, CardMedia, Typography, List, ListItem, ListItemText, CardActions } from '@material-ui/core';
 import React from 'react'
+import { Link, useParams } from 'react-router-dom';
 import { adminUsers } from '../../../enviroment';
 
 const useStyles = makeStyles((theme: any) => ({}))
 
 interface ProfileCardProps {
-    user: any
+    users: any
 }
 
-export const ProfileCard: React.FC<ProfileCardProps> = ({user}) => {
+export const ProfileCard: React.FC<ProfileCardProps> = ({users}) => {
 
     const classes = useStyles();
 
+    const { username } = useParams<{ username?: string }>()
+
+    const user = users.find((u: any) => u.username === username)
+
         return (
         <div className="py-10 justify-center align-items-center flex">
+            {user? 
             <Card elevation={5} className="w-1/3 shadow-lg rounded-lg text-decoration:none text-left">
                     <CardHeader title={user.username + "'s profile card"}/>
                     <div className="w-full h-px bg-red m-auto border-red border"></div>
@@ -24,7 +30,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({user}) => {
                             <ListItem>
                                 <ListItemText
                                     primary={(adminUsers.includes(user.username) ?
-                                        <p className="flex">{user.username} <p className="mx-2 p-1 inline-block align-top rounded-full text-red text-xxs border border-red">Admin</p></p> : <p>{user.username}</p>)}
+                                        <p className="flex">{user.username} 
+                                            <p className="mx-2 p-1 inline-block align-top rounded-full text-red text-xxs border border-red">Admin</p>
+                                        </p> : <p>{user.username}</p>)}
                                     secondary={'Username'}
                                 />
                             </ListItem>
@@ -46,11 +54,14 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({user}) => {
                     </CardContent>
                     <div className="w-full h-0.25 bg-red m-auto border-gray-100 border"></div>
                     <CardActions className="flex justify-end mx-2">
-                        <button className="rounded-lg py-2 px-4 hover:bg-red-light hover:text-white font-poppins">
-                            Edit Profile
-                        </button>
+                        <Link to={"/profile/"+user.username+"/editprofile"} >
+                            <button className="rounded-lg py-2 px-4 hover:bg-red-light hover:text-white font-poppins">
+                                Edit Profile
+                            </button>
+                        </Link>
                     </CardActions>
             </Card>
+            : <p className="text-2xl">Can't find profile</p>}
         </div>
         );
 }

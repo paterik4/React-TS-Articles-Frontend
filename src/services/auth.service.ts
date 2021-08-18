@@ -77,9 +77,7 @@ const editArticle = (
     )
 }
 
-const deleteArticle = (
-    slug: any,
-) => {
+const deleteArticle = (slug: any) => {
     return axios.delete(API_URL + 'articles/' + slug, { headers: authHeader() })
 }
 
@@ -109,7 +107,31 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem('user')!)
 }
 
-const deleteUser = (email: string) => {}
+const deleteUser = (email: string) => {
+    return axios.delete(API_URL + 'users/' + email, { headers: authHeader() })
+}
+
+const getUsers = () => {
+    return axios.get(API_URL + 'users', { headers: authHeader() })
+}
+
+const editProfile = (
+    username: any,
+    email: string,
+    bio: string,
+    image: string
+) => {
+    return axios.put(
+        API_URL + 'user',
+        {
+            username,
+            email,
+            bio,
+            image
+        },
+        { headers: authHeader() }
+    )
+}
 
 const createTag = (tag: string) => {
     return axios.post(API_URL + 'tags/addNew', { tag })
@@ -137,7 +159,9 @@ const exportAuthService = {
     createTag,
     createComment,
     editArticle,
-    deleteArticle
+    deleteArticle,
+    getUsers,
+    editProfile
 }
 
 export default exportAuthService
