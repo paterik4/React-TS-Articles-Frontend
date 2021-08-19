@@ -4,8 +4,6 @@ import * as Yup from 'yup'
 import { useForm } from 'react-hook-form'
 import exportAuthService from '../../services/auth.service'
 import { toast } from 'react-toastify'
-import { API_URL } from '../../enviroment'
-import { Tooltip } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
 interface LoginPageProps {}
@@ -18,6 +16,7 @@ type UserSubmitForm = {
 export const LoginPage: React.FC<LoginPageProps> = (props: any) => {
 
     const history = useHistory();
+    
     const validationSchema = Yup.object().shape({
         email: Yup.string()
             .required('Email is required')

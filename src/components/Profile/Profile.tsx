@@ -1,9 +1,7 @@
 import { makeStyles } from '@material-ui/core'
 import React from 'react'
-import { useParams } from 'react-router-dom'
 import exportApiFetchs from '../../Api/API'
 import { API_URL } from '../../enviroment'
-import exportAuthService from '../../services/auth.service'
 import { ProfileCard } from './components/ProfileCard'
 
 const useStyles = makeStyles((theme: any) => ({
@@ -21,7 +19,6 @@ interface ProfileProps {
 export const Profile: React.FC<ProfileProps> = ({}) => {
 
     const classes = useStyles()
-    const currentUser = exportAuthService.getCurrentUser()
 
     const {
         data2: users,
@@ -31,7 +28,9 @@ export const Profile: React.FC<ProfileProps> = ({}) => {
 
         return (
         <div className={classes.profileContainer}>
-            <ProfileCard users={users} />
+            {error2 && <div>{error2}</div>}
+            {isPending2 && <div>Loading...</div>}
+            {users? <ProfileCard users={users} /> : <p className="text-2xl">This user is not exists or something went wrong.</p>}
         </div>
         );
 }

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
 import { API_URL } from '../enviroment'
 import authHeader from './auth-header'
 
@@ -153,6 +152,7 @@ const exportAuthService = {
     logout,
     getCurrentUser,
     deleteUser,
+    getUserInfo,
     createArticle,
     favoriteArticle,
     unFavoriteArticle,

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import authHeader from '../services/auth-header'
 
 const FetchData = (url: any) => {
     const [data, setData] = useState([])

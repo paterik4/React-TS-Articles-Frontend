@@ -17,7 +17,9 @@ export const EditProfilePage: React.FC<EditProfilePageProps> = ({}) => {
     
     return (
             <div>
-                <EditProfile users={users} />
+                {error2 && <div>{error2}</div>}
+                {isPending2 && <div>Loading...</div>}
+                {users ? <EditProfile users={users} /> : <p className="text-2xl">User not found or something went wrong.</p>}
             </div>
     );
 }

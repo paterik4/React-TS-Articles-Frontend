@@ -1,5 +1,5 @@
 import { Tooltip, Typography } from '@material-ui/core'
-import React, { RefObject, useCallback, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import exportAuthService from '../../../../../services/auth.service'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
@@ -43,8 +43,6 @@ export const EditArticle: React.FC<EditArticleProps> = ({ article }) => {
         error2,
         isPending2
     } = exportApiFetchs.FetchTagsData(API_URL + 'tags')
-
-    const user = exportAuthService.getCurrentUser()
 
     const onSubmit = (data: any) => {
         const addNewTags = (newTags: string) => {
@@ -174,7 +172,10 @@ export const EditArticle: React.FC<EditArticleProps> = ({ article }) => {
                                                 )
                                         )
                                     ) : (
-                                        <div>Loading...</div>
+                                        <React.Fragment>
+                                            {error2 && <div>{error2}</div>}
+                                            {isPending2 && <div>Loading...</div>}
+                                        </React.Fragment>
                                     )}
                                 </div>
                             </div>

@@ -4,10 +4,9 @@ import {
     CardContent,
     Grid,
     makeStyles,
-    Paper,
     Typography
 } from '@material-ui/core'
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme: any) => ({

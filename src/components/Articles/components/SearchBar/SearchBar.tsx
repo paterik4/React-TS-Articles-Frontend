@@ -5,10 +5,9 @@ import {
     makeStyles,
     Paper
 } from '@material-ui/core'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import SearchIcon from '@material-ui/icons/Search'
 import exportApiFetchs from '../../../../Api/API'
-import { API_URL } from '../../../../enviroment'
 
 const useStyles = makeStyles((theme: any) => ({
     root: {

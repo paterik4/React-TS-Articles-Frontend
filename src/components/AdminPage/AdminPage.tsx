@@ -1,4 +1,3 @@
-import { Grid, Typography } from '@material-ui/core';
 import React from 'react'
 import exportApiFetchs from '../../Api/API';
 import { adminUsers, API_URL } from '../../enviroment';
@@ -30,6 +29,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({}) => {
 
         return (
             <div className="flex align-middle px-40">
+                {error && <div>{error}</div>}
+                {isPending && <div>Loading...</div>}
+                {error2 && <div>{error2}</div>}
+                {isPending2 && <div>Loading...</div>}
                 { articles ? (
                 user && adminUsers.includes(user.user.username) ? (
                 <div>
@@ -39,7 +42,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({}) => {
                 </div>
                 ) : (<p className="text-3xl">Authorized access only</p>)
                 ):(
-                    <p className="text-3xl">Loading...</p>
+                    <p className="text-3xl">There are no articles found or something went wrong.</p>
                 )}
             </div>
         );

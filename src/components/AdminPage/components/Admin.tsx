@@ -2,14 +2,12 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
-    Divider,
     Grid,
     makeStyles,
-    Typography
 } from '@material-ui/core'
 import React from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import exportAuthService from '../../../services/auth.service'
 import { toast } from 'react-toastify'
 
@@ -41,6 +39,7 @@ export const Admin: React.FC<AdminProps> = ({ users, articles }) => {
             if(response.status === 200)
             {
                 toast.success(username + "'s profile has been deleted")
+                setTimeout(() => window.location.reload(), 1000)
             }
         }).catch(e=> {
             toast.success(e.message)
@@ -107,8 +106,8 @@ export const Admin: React.FC<AdminProps> = ({ users, articles }) => {
                     {articles ? (
                         articles.map((article: any) => (
                             <Accordion
-                                expanded={expanded === article.id}
-                                onChange={handleChange(article.id)}
+                                expanded={expanded === article.slug}
+                                onChange={handleChange(article.slug)}
                                 key={article.id}
                             >
                                 <AccordionSummary

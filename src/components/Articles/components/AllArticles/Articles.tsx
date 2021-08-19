@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import exportApiFetchs from '../../../../Api/API';
 import { API_URL } from '../../../../enviroment';
 import { AllArticles } from './components/AllArticles';
@@ -41,6 +41,7 @@ export const Articles: React.FC<ArticlesProps> = (searchText) => {
         <div className={classes.articlesContainer}>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
+            {isPending2 && <div>Loading...</div>}
             {articles && searchText? <AllArticles selectedTag={selectedTag} articles={articles} /> : <ArticlesBySlug articles={articlesBySlug} />}
         </div>);
 }

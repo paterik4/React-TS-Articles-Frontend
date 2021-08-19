@@ -20,7 +20,7 @@ export const ArticleDetailsPage: React.FC<ArticleDetailsPageProps> = ({}) => {
         } = exportApiFetchs.FetchArticleData(API_URL + 'articles/' + slug )
 
         /* console.log(slug) */
-        console.log(article)
+        /* console.log(article) */
 
         const user = exportAuthService.getCurrentUser()
 

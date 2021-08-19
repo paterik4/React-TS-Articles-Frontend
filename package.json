@@ -8,15 +8,16 @@
         "@material-ui/core": "^4.12.3",
         "@material-ui/icons": "^4.11.2",
         "@material-ui/styles": "^4.11.4",
-        "@testing-library/jest-dom": "^5.11.4",
-        "@testing-library/react": "^11.1.0",
-        "@testing-library/user-event": "^12.1.10",
-        "@types/jest": "^26.0.15",
+        "@testing-library/dom": "^7.10.1",
+        "@testing-library/jest-dom": "^5.9.0",
+        "@testing-library/react": "^10.2.1",
+        "@testing-library/user-event": "^11.4.0",
         "@types/node": "^12.0.0",
         "@types/react": "^17.0.0",
         "@types/react-dom": "^17.0.0",
         "axios": "^0.21.1",
         "formik": "^2.2.9",
+        "jest-environment-jsdom": "^27.0.6",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-hook-form": "^7.12.2",
@@ -34,7 +35,8 @@
     "scripts": {
         "start": "craco start",
         "build": "craco build",
-        "test": "craco test",
+        "test": "jest -c jest.config.js --watch",
+        "test:watch": "jest --watch",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
@@ -56,9 +58,19 @@
         ]
     },
     "devDependencies": {
+        "@babel/preset-typescript": "^7.15.0",
+        "@types/enzyme": "^3.10.9",
+        "@types/enzyme-adapter-react-16": "^1.0.6",
+        "@types/jest": "^26.0.24",
         "@types/react-router-dom": "^5.1.8",
+        "@types/react-test-renderer": "^17.0.1",
         "autoprefixer": "^9.8.6",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.6",
+        "jest": "^27.0.6",
         "postcss": "^7.0.36",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
+        "react-test-renderer": "^17.0.2",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7",
+        "ts-jest": "^27.0.5"
     }
 }

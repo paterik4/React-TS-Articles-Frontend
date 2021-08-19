@@ -1,8 +1,6 @@
-import { Grid, Tooltip, Typography } from '@material-ui/core'
+import { Tooltip, Typography } from '@material-ui/core'
 import React from 'react'
 import exportAuthService from '../../../../../services/auth.service'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -40,9 +38,6 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
         error2,
         isPending2
     } = exportApiFetchs.FetchTagsData(API_URL + 'tags')
-
-    const user = exportAuthService.getCurrentUser()
-
 
     const onSubmit = (data: any) => {
         const addNewTags = (newTags: string) => {
@@ -158,7 +153,10 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
                                                 )
                                         )
                                     ) : (
-                                        <div>Loading...</div>
+                                        <React.Fragment>
+                                            {error2 && <div>{error2}</div>}
+                                            {isPending2 && <div>Loading...</div>}
+                                        </React.Fragment>
                                     )}
                                 </div>
                             </div>

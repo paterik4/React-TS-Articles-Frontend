@@ -1,15 +1,10 @@
-import { Tooltip, Typography } from '@material-ui/core'
-import React, { RefObject, useCallback, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import exportAuthService from '../../../../../services/auth.service'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import { withStyles } from '@material-ui/styles'
-import exportApiFetchs from '../../../../../Api/API'
-import { API_URL } from '../../../../../enviroment'
 
 interface EditProfileProps {
     users: any
