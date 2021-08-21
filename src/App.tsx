@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
 import { RegisterPage } from './components/Register/RegisterPage';
 import { ToastContainer } from 'react-toastify';
-import { LoginPage } from './components/Login/LoginPage';
 import { Profile } from './components/Profile/Profile';
 import { ArticlesPage } from './components/Articles/ArticlesPage';
 import { CreateArticlePage } from './components/Articles/components/CreateArticle/CreateArticlePage';
@@ -14,6 +13,7 @@ import { ArticleDetailsPage } from './components/Articles/components/ArticleDeta
 import { AdminPage } from './components/AdminPage/AdminPage';
 import { EditArticlePage } from './components/Articles/components/EditArticle/EditArticlePage';
 import { EditProfilePage } from './components/Profile/components/EditProfile/EditProfilePage';
+import { LoginPage } from './components/Login/LoginPage';
 
 interface AppProps {
 }

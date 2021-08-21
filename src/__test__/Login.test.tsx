@@ -1,31 +1,12 @@
-import React from "react";
-import { render, fireEvent, waitFor, screen } from "@testing-library/react";
-import { ToastContainer } from "react-toastify";
-import { LoginPage } from "../components/Login/LoginPage";
-import { mount } from 'enzyme';
-import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
+import React from 'react';
+import { mount, configure } from 'enzyme';
+import { Login } from '../components/Login/Components/Login';
 
-describe("<LoginPage />", () => {
-    test("should display a blank login form, with remember me checked by default", async () => {
-        const onSubmit = jest.fn(); 
-        act(() => {
-            renderWithToastify(<LoginPage />);
-            
-        })
-        userEvent.click(screen.getByText('Login'));
-        expect(onSubmit).toBeCalledTimes(1)
-    });
-});
+it('should call submitFN when the form is submitted', () => {
+  const submitFN = jest.fn();
+  const wrapper = mount(<Login submitFN={submitFN} />);
 
-export const renderWithToastify = (component: any) => {
-
-  return (
-    render(
-      <div>
-        <ToastContainer/>
-        {component}
-      </div>
-    )
-  );
-};
+  const form = wrapper.find('form');
+  form.simulate('submit');
+  expect(submitFN).toHaveBeenCalledTimes(1)
+})
