@@ -29,6 +29,7 @@ export const Tags: React.FC<TagsProps> = () => {
         <div className={classes.tagsContainer}>
             {error2 && <div>{error2}</div>}
             {isPending2 && <div>Loading...</div>}
-            {tags && <TagCards tags={tags}/>}
+            <h1 className="text-left py-2">Available tags:</h1>
+            {tags.length > 0 ? <TagCards tags={tags}/> : <p className="text-md text-left">There are no tags available currently</p>}
         </div>);
 }

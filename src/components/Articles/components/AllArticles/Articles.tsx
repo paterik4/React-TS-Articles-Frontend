@@ -42,6 +42,7 @@ export const Articles: React.FC<ArticlesProps> = (searchText) => {
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
             {isPending2 && <div>Loading...</div>}
-            {articles && searchText? <AllArticles selectedTag={selectedTag} articles={articles} /> : <ArticlesBySlug articles={articlesBySlug} />}
+            {articles.length > 0 ? <AllArticles selectedTag={selectedTag} articles={articles} /> : 
+            <p className="text-xl text-left">There are no articles found. Create one to make it visible here.</p>}
         </div>);
 }

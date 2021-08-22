@@ -114,7 +114,6 @@ export const TagCards: React.FC<TagCardsProps> = ({ tags }) => {
 
     return (
         <div className={classes.tagsContainer}>
-            <h1 className="text-left py-2">Available tags:</h1>
             <Grid container className={classes.container}>
                 {tags ? (
                     tags.map((item: any, i: number) => (

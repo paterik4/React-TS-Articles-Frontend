@@ -35,7 +35,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({}) => {
                 {isPending2 && <div>Loading...</div>}
                 { articles ? (
                 user && adminUsers.includes(user.user.username) ? (
-                <div>
+                <div className="flex flex-col w-full align-middle">
                     <p className="text-3xl pt-10 text-center">AdminPage</p>
                     <p className="text-md pt-1 pb-10">You can edit or delete profiles and articles since you are an admin user</p>
                     <Admin users={users} articles={articles} />

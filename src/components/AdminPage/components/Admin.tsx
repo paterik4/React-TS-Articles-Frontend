@@ -103,7 +103,7 @@ export const Admin: React.FC<AdminProps> = ({ users, articles }) => {
                     )}
                 </Grid>
                 <Grid item sm={6}>
-                    {articles ? (
+                    {articles.length > 0 && articles? (
                         articles.map((article: any) => (
                             <Accordion
                                 expanded={expanded === article.slug}
@@ -143,7 +143,7 @@ export const Admin: React.FC<AdminProps> = ({ users, articles }) => {
                             </Accordion>
                         ))
                     ) : (
-                        <p>Loading... </p>
+                        <p className="text-xl">There are no articles available.</p>
                     )}
                 </Grid>
             </Grid>

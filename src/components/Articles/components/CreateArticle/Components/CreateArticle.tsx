@@ -41,6 +41,8 @@ export const CreateArticle: React.FC<CreateArticleProps> = () => {
 
     const onSubmit = (data: any) => {
         const addNewTags = (newTags: string) => {
+            const allTagExists = tags.find((tag: any) => tag.tag === 'All')
+            !allTagExists && exportAuthService.createTag('All')
             const newTagsArr = newTags.split(',')
             newTagsArr.map((tag: any) => 
                 exportAuthService.createTag(tag)
