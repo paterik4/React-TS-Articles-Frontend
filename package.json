@@ -37,7 +37,7 @@
         "yup": "^0.32.9"
     },
     "scripts": {
-        "start": "craco --optimize_for_size --max_old_space_size=1024 start",
+        "start": "craco --optimize_for_size --max_old_space_size=460 start",
         "build": "craco build",
         "test": "jest -c jest.config.js --watch",
         "test:watch": "jest --watch",
