@@ -36,7 +36,7 @@
         "yup": "^0.32.9"
     },
     "scripts": {
-        "start": "craco start",
+        "start": "npm install && craco start",
         "build": "craco build",
         "test": "jest -c jest.config.js --watch",
         "test:watch": "jest --watch",
