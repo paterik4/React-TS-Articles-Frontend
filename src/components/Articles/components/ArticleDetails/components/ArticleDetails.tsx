@@ -6,6 +6,7 @@ import {Link, useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import { adminUsers } from '../../../../../enviroment'
 
 interface ArticleDetailsProps {
     article: any
@@ -54,12 +55,24 @@ export const ArticleDetails: React.FC<ArticleDetailsProps> = ({ article }) => {
         
     }
 
+    const deleteComment = (id: any) => {
+        exportAuthService.deleteComment(slug, id).then(response => {
+            if(response.status === 200)
+            {
+                toast.success("Comment successfully deleted")
+            }
+        }).then(() => {
+            history.push("/articles/"+slug)
+            window.location.reload()
+        }).catch(e => toast.error(e.message))
+    }
+
     const handleSubmit = (data: any) => {
         exportAuthService
             .createComment(slug, data.comment)
             .then((response) => {
                 if (response.status === 201) {
-                    history.push('/articles')
+                    history.push('/articles/'+slug)
                 }
             })
             .then((response) => {
@@ -67,7 +80,7 @@ export const ArticleDetails: React.FC<ArticleDetailsProps> = ({ article }) => {
             })
             .catch((err) => {
                 toast.error('Something went wrong')
-            })
+            }).then(() => window.location.reload())
             console.log(slug + "  ----------  " + data.comment)
     }
 
@@ -77,6 +90,14 @@ export const ArticleDetails: React.FC<ArticleDetailsProps> = ({ article }) => {
             .min(10, 'Comment must be at least 10 characters')
             .max(200, 'Comment must not exceed 200 characters')
     })
+
+    const getTimeStamp = (time: any) => {
+        const date = new Date(time)
+        let location = date.toISOString().lastIndexOf('.')
+        let dateFormat = date.toISOString().split('-').join('.').split('T').join('  ')
+        let finalFormat = dateFormat.substring(0, location+1)
+        return finalFormat
+    }
 
     const user = exportAuthService.getCurrentUser()
 
@@ -151,7 +172,7 @@ export const ArticleDetails: React.FC<ArticleDetailsProps> = ({ article }) => {
                             validationSchema={validationSchema}
                             className="flex"
                         >
-                            {({ errors, touched }) => (
+                            {({ errors }) => (
                                 <Form className="w-full">
                                     <Field
                                         className="mr-4"
@@ -176,7 +197,28 @@ export const ArticleDetails: React.FC<ArticleDetailsProps> = ({ article }) => {
                         <div>
                             {comments ? (
                                 comments.map((comment: any) => (
-                                    <div>{comment.body}</div>
+                                    <div className="flex flex-col gap-2 pb-8">
+                                        <p>{comment.body}</p>
+                                        <div className="flex gap-4">
+                                            <p>{getTimeStamp(comment.created)}</p>
+                                            <p>Written by: {comment.author.username}</p>
+                                            {(user.user.username === comment.author.username || adminUsers.includes(user.user.username)) &&  
+                                            <React.Fragment>
+{/*                                                 <Link to={"/articles/"+slug+"/editArticle"}>
+                                                    <p className="cursor-pointer px-2 mr-4 rounded-lg border border-red text-red hover:text-white hover:bg-red"
+                                                    >Edit comment</p>
+                                                </Link> */}
+                                                    <p 
+                                                    className="cursor-pointer px-2 mr-4 rounded-lg border border-red text-red hover:text-white hover:bg-red"
+                                                    onClick={() => {deleteComment(comment.id)}}
+                                                    >
+                                                        Delete comment
+                                                    </p>
+                                            </React.Fragment>}
+                                        </div>
+                                        <p className="h-px border border-red"></p>
+                                    </div>
+                                    
                                 ))
                             ) : (
                                 <p>There are no comments for this article</p>

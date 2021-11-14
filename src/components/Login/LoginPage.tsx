@@ -18,7 +18,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({}) => {
         .then((response) => {
             history.push('/articles')
             toast.success('Login successful')
-            setTimeout(() => window.location.reload(false), 500)
+            setTimeout(() => window.location.reload(), 1500)
         })
         .catch((err) => {
             toast.error('Something went wrong')

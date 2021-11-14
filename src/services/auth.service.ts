@@ -136,14 +136,20 @@ const createTag = (tag: string) => {
     return axios.post(API_URL + 'tags/addNew', { tag })
 }
 
-const createComment = (slug: any, comment: string) => {
+const createComment = (slug: any, body: string) => {
     return axios.post(
         API_URL + 'articles/' + slug + '/comments',
-        { comment },
+        { body },
         {
             headers: authHeader()
         }
     )
+}
+
+const deleteComment = (slug: any, id: any) => {
+    return axios.delete(API_URL + 'articles/' + slug + '/comments/' + id, {
+        headers: authHeader()
+    })
 }
 
 const exportAuthService = {
@@ -158,6 +164,7 @@ const exportAuthService = {
     unFavoriteArticle,
     createTag,
     createComment,
+    deleteComment,
     editArticle,
     deleteArticle,
     getUsers,

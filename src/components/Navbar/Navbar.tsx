@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
     const logOut = () => {
         exportAuthService.logout();
         history.push('/login')
-        window.location.reload(false);
+        window.location.reload();
     }
 
     return (

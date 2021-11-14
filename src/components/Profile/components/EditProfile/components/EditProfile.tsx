@@ -96,8 +96,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({users}) => {
                     <Form>
                         <div className="grid grid-rows-5 grid-flow-col gap-4 auto-rows-max pt-10 px-40">
                             <div className="form-group">
-                                <label className="inputLabel">Username*</label>
-                                <Field name="username" />
+                                <label className="inputLabel">Username</label>
+                                <Field disabled name="username" />
                                 {props.errors.username && props.touched.username ? (
                                     <div className="invalid-feedback">
                                         {props.errors.username}
