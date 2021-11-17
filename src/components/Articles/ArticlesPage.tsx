@@ -32,20 +32,11 @@ export const ArticlesPage: React.FC<ArticlesPageProps> = ({}) => {
 
     /* console.log(articles) */
 
-    const [input, setInput] = useState('');
-    const [articlesListDefault, setArticlesListDefault] = useState([]);
-    const [articlesList, setArticlesList] = useState([]);
-
-    useEffect(() => {
-        setArticlesListDefault(articles)
-        setArticlesList(articles)
-    })
-
     const handleChange = (event: any) => {
-/*         setInput(event.target.value)
+        /* console.log(event.target.value) */
         event.target.value? 
-        localStorage.setItem('searchText', event.target.value) :
-        localStorage.removeItem('searchText') */
+            (localStorage.setItem('searchText', event.target.value)):
+            (localStorage.removeItem('searchText'))
     }
 
         return (
@@ -59,7 +50,7 @@ export const ArticlesPage: React.FC<ArticlesPageProps> = ({}) => {
             <p className="text-left font-poppins text-black-light text-md py-2">You can search articles by title, by slug and with clicking one of the tags cards.</p>
             <SearchBar handleChange={handleChange} />
             <Tags />
-            <Articles searchText={input} />
+            <Articles />
         </div>
         );
 }

@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme: any) => ({
 }))
 
 interface ArticlesProps {
-    searchText: string
+
 }
 
-export const Articles: React.FC<ArticlesProps> = (searchText) => {
+export const Articles: React.FC<ArticlesProps> = ({}) => {
 
     const classes = useStyles()
 
@@ -25,14 +25,6 @@ export const Articles: React.FC<ArticlesProps> = (searchText) => {
         isPending
     } = exportApiFetchs.FetchData(API_URL + 'articles')
 
-    /* console.log(articles) */
-
-    const {
-        data2: articlesBySlug,
-        error2,
-        isPending2
-    } = exportApiFetchs.FetchArticlesBySlugData(API_URL + 'articles/' + searchText)
-
     const selectedTag = localStorage.getItem('tagName')!
 
     /* console.log(articles) */
@@ -41,7 +33,6 @@ export const Articles: React.FC<ArticlesProps> = (searchText) => {
         <div className={classes.articlesContainer}>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
-            {isPending2 && <div>Loading...</div>}
             {articles.length > 0 ? <AllArticles selectedTag={selectedTag} articles={articles} /> : 
             <p className="text-xl text-left">There are no articles found. Create one to make it visible here.</p>}
         </div>);
